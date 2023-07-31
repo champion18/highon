@@ -8,7 +8,7 @@ export default function BlogCard(props) {
     console.log("BlogCard props", props)
     return (
         <div className="card">
-            <img alt="" className="blog-img" src={props.props.image.url}>
+            <img alt="" className="blog-img" src={props.props.image.url} onClick={props.handleViewPost}>
             </img>
             {
                 props.props.isLiked ?

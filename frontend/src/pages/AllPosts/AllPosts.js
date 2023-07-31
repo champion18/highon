@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Header from "../../component/Header/Header"
-import BlogCard from '../../component/Blog/BlogCard'
+import Post from '../../component/Post/Post.js'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom"
 
-export const Home = () => {
+const AllPosts = () => {
   const [posts, setPosts] = useState([]);
+  const { id } = useParams();
+  console.log("id", id)
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -26,7 +29,6 @@ export const Home = () => {
     fetchPosts();
   }, []);
 
-  console.log("posts", posts)
 
   function handleLike(e, id) {
     e.stopPropagation();
@@ -35,22 +37,32 @@ export const Home = () => {
     })
   }
 
-  const navigate = useNavigate();
+  let postElements = posts.map(el => {
+    // return <Post key={el._id} props={el} handleLike={(e) => handleLike(e, el._id)} handleViewPost={() => handleViewPost(el._id)} />
+    return <Post key={el._id} props={el} handleLike={(e) => handleLike(e, el._id)}/>
+  })
 
-  function handleViewPost(id) {
-    navigate(`/posts/${id}`);
+  for (let i = 0; i < postElements.length; i++) {
+    if (postElements[i].key === id) {
+    console.log("reshuffled", id)
+
+      let temp = postElements[0];
+      postElements[0] = postElements[i];
+      postElements[i] = temp;
+    }
   }
 
-  let postElements = posts.map(el => {
-    return <BlogCard key={el._id} props={el} handleLike={(e) => handleLike(e, el._id)} handleViewPost={() => handleViewPost(el._id)} />
-  })
+  console.log("postElements", postElements)
 
   return (
     <div className="App">
       <Header />
-      <div className="posts">
+      <div className="posts-timeline">
         {postElements}
       </div>
     </div>
   )
 }
+
+
+export default AllPosts;

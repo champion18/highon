@@ -3,8 +3,6 @@ import "./Tag.css";
 
 
 const Tag = (props) => {
-  console.log("tag props", props)
-
   return (
     <>
        <div className="vibeTags">
@@ -16,4 +14,3 @@ const Tag = (props) => {
 };
 
 export default Tag;
-

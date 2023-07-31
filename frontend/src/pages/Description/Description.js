@@ -14,6 +14,7 @@ const Description = () => {
   const [imageData, setImageData] = useState(null);
   const [showT, setShowT] = React.useState(false)
   const [showL, setShowL] = React.useState(false)
+
   let vibeTags = [
     {
       name: "Photography",
@@ -28,6 +29,7 @@ const Description = () => {
       isSelected: false
     }
   ]
+
   const [vibeTagsArray, setVibeTagsArray] = React.useState(vibeTags)
   const [selectedVibeTagsArray, setSelectedVibeTagsArray] = useState([]);
 
@@ -54,6 +56,7 @@ const Description = () => {
       image: imageData
     }
     createPost(post);
+    navigate('/');
   }
 
   const createPost = async (post) => {
@@ -63,7 +66,7 @@ const Description = () => {
       );
       console.log("createPost response", response)
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error creating post:', error);
     }
   };
 
@@ -105,7 +108,7 @@ const Description = () => {
   }])
 
   const peopleToTag = people.map(el => {
-    return <Tag props={el.username} />
+    return <Tag key={el._id} props={el.username} />
   })
 
   return (

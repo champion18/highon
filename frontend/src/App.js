@@ -4,6 +4,7 @@ import { Home } from './pages/Home/Home';
 import CreatePost from './pages/CreatePost/CreatePost';
 import SelectSource from './pages/SelectSource/SelectSource';
 import Description from './pages/Description/Description';
+import AllPosts from './pages/AllPosts/AllPosts.js';
 
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
         <Route path="/createPost" element={<CreatePost/>}/>
         <Route path="/selectSource" element={<SelectSource/>}/>
         <Route path="/addDescription" element={<Description/>}/>
+        <Route path="/posts/:id" element={<AllPosts/>}/>
+
       </Routes>
     </BrowserRouter>
   );
