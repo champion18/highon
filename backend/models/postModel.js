@@ -37,16 +37,16 @@ const postSchema = new mongoose.Schema({
         },
         username: {
             type: String,
-            // required: true,
+            required: true,
         },
         avatar: {
             public_id: {
                 type: String,
-                // required: true,
+                required: true,
             },
             url: {
                 type: String,
-                // required: true,
+                required: true,
             },
         },
     },

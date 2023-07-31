@@ -3,15 +3,6 @@ const { getUserDetails } = require("../controllers/userController");
 
 const cloudinary = require("cloudinary");
 
-// req body: 
-// {
-//     "description":"This is a new post",
-//     "vibetags":"food",
-//     "peopletags":"aastha",
-//     "location": "xyz",
-//      "image":"pikachu.jpg"
-// }
-
 exports.createPost = async (req, res, next) => {
     let image = `/home/aastha/highon/backend/imgs/user4.jpg`
 
@@ -27,23 +18,6 @@ exports.createPost = async (req, res, next) => {
         return;
     }
 
-    // console.log("Post does not have an image")
-    // res.status(404).json({
-    //     message: "Post does not have an image",
-    // })
-    // return;
-
-
-    // get post...
-    // if(req.body.likedbyusers.length !== 0) {
-    //     for(let i = 0 ; i < req.body.likedbyusers.length; i++) {
-    //         let user = await User.findById(req.body.likedbyusers[i]).populate(
-    //             // takes name & email from user's database
-    //             "user",
-    //             "username avatar"
-    //           ); 
-    //     }          
-    // }
     let userDetails = {};
     try {
         userDetails = await getUserDetails();
@@ -54,26 +28,6 @@ exports.createPost = async (req, res, next) => {
         })
         return;
     }
-
-    //     const userDetails = getUserDetails();
-    // console.log(userDetails)
-    // getUserDetails()
-    // .then((userDetails) => {
-    //   // {
-    //   //     avatar: {
-    //   //       public_id: 'useravatars/yroxl7gjwfcyiebbfaj6',
-    //   //       url: 'https://res.cloudinary.com/myfirstcloud/image/upload/v1690711205/useravatars/yroxl7gjwfcyiebbfaj6.jpg'
-    //   //     },
-    //   //     _id: new ObjectId("64c634a6b3c62236375e7205"),
-    //   //     __v: 0,
-    //   //     username: 'user1'
-    //   //   }
-
-    // })
-    // .catch((error) => {
-    //   // Handle errors
-    // });
-
 
     let post={};
     try {
