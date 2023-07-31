@@ -17,30 +17,49 @@ const Description = () => {
     setImageData(base64String);
   }, []);
 
+  function makePost() {
+    const descriptionInput = document.getElementById("textInput");
+    const vibetags = selectedButton;
 
-  // useEffect(() => {
-  //   const fetchPosts = async (post) => {
-  //     try {
-  //       const response = await axios.post('http://localhost:5000/api/post/create',
-  //       post
-  //       );
-  // // console.log("response.data", response.data)
-  //       // setPosts(response.data.posts);
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-  //   fetchPosts();
-  // }, []);
+    console.log("imageData", imageData)
 
+    // // Decode the base64 string to binary data
+    // const binaryImageData = atob(imageData);
 
-  function makePost(){
-    const text = document.getElementById("textInput");
-    //text.value
-    
+    // // Convert the binary data to a Uint8Array
+    // const bytes = new Uint8Array(binaryImageData.length);
+    // for (let i = 0; i < binaryImageData.length; i++) {
+    //   bytes[i] = binaryImageData.charCodeAt(i);
+    // }
+
+    // // Create a Blob from the Uint8Array
+    // const blob = new Blob([bytes], { type: 'image/jpeg' });
+
+    // // Create a URL for the Blob
+    // const imageUrl = URL.createObjectURL(blob);
+
+    // // Use the imageUrl to display the image or perform further processing (e.g., save the image as a file)
+
+    let post = {
+      description: descriptionInput.value,
+      vibetags,
+      image: imageData
+    }
+    fetchPosts(post);
   }
 
+  const fetchPosts = async (post) => {
+    console.log("post", post)
 
+    try {
+      const response = await axios.post('http://localhost:5000/api/post/create',
+        post
+      );
+      console.log(" fetchPosts response", response)
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -79,18 +98,18 @@ const Description = () => {
         <p className="vibeText">Add your vibetags</p>
         <div className="vibeTagDiv">
           <button className={selectedButton === 'Photography' ? 'selected' : 'vibeTags'}
-           onClick={selectVibe}
-           >
+            onClick={selectVibe}
+          >
             <img src={camera} alt=""></img>
             <span>Photography</span>
           </button>
           <button className={selectedButton === 'Food vlogs' ? 'selected' : 'vibeTags'}
-           onClick={selectVibe}>
+            onClick={selectVibe}>
             <img src={food} alt=""></img>
             <span>Food vlogs</span>
           </button>
           <button className={selectedButton === 'Gaming' ? 'selected' : 'vibeTags'}
-           onClick={selectVibe}>
+            onClick={selectVibe}>
             <img src={game} alt=""></img>
             <span>Gaming</span>
           </button>

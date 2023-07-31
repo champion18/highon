@@ -1,21 +1,31 @@
 const Post = require("../models/postModel");
 const { getUserDetails } = require("../controllers/userController");
-
+const fs = require('fs');
 const cloudinary = require("cloudinary");
+const path = require("path");
 
 exports.createPost = async (req, res, next) => {
-    let image = `/backend/imgs/user4.jpg`
+    const base64Image = req.body.image;
+    const binaryImageData = Buffer.from(base64Image, 'base64');
 
-    let myCloud;
+    let tempFilePath = path.dirname("postController.js");
+    tempFilePath += "/imgs/image.jpg"
+    console.error('tempFilePath', tempFilePath);
+
+    fs.writeFileSync(tempFilePath, binaryImageData);
+
     try {
-        myCloud = await cloudinary.v2.uploader.upload(image, {
+        var myCloud = await cloudinary.v2.uploader.upload(tempFilePath, {
             folder: "posts",
             width: 150,
             crop: "scale",
         });
-    } catch (err) {
-        console.log("cloudinary err 1", err, i)
-        return;
+
+        fs.unlinkSync(tempFilePath);
+
+    } catch (error) {
+        console.error('Error uploading to Cloudinary:', error);
+        res.status(500).json({ error: 'Something went wrong' });
     }
 
     let userDetails = {};
@@ -29,7 +39,7 @@ exports.createPost = async (req, res, next) => {
         return;
     }
 
-    let post={};
+    let post = {};
     try {
         post = await Post.create({
             ...req.body,
