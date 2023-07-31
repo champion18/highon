@@ -8,4 +8,4 @@ Inside backend & frontend folders, run
 ## Start frontend
 `npm start`
 
-## Post creation API and getAllPosts API are working, now I need to add that functionality from frontend
+## Post creation and home page are working

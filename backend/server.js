@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db")
 const cloudinary = require("cloudinary");
 const net = require("net");
-const {registerUsers} = require("./controllers/userController")
+
 // work around a node v20 bug: https://github.com/nodejs/node/issues/47822#issuecomment-1564708870
 if (net.setDefaultAutoSelectFamily) {
     net.setDefaultAutoSelectFamily(false);

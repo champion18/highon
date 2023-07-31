@@ -10,7 +10,6 @@ exports.createPost = async (req, res, next) => {
 
     let tempFilePath = path.dirname("postController.js");
     tempFilePath += "/imgs/image.jpg"
-    console.error('tempFilePath', tempFilePath);
 
     fs.writeFileSync(tempFilePath, binaryImageData);
 
@@ -50,7 +49,7 @@ exports.createPost = async (req, res, next) => {
             }
         });
     } catch (err) {
-        console.log("err 2", err, i)
+        console.log("err 2", err)
     }
     res.status(200).json({
         message: "Post uploaded successfully",
