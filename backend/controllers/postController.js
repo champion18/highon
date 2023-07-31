@@ -4,7 +4,7 @@ const { getUserDetails } = require("../controllers/userController");
 const cloudinary = require("cloudinary");
 
 exports.createPost = async (req, res, next) => {
-    let image = `/home/aastha/highon/backend/imgs/user4.jpg`
+    let image = `/backend/imgs/user4.jpg`
 
     let myCloud;
     try {
