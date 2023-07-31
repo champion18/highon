@@ -21,7 +21,7 @@ export const Home = () => {
   console.log("posts", posts)
 
   let postElements = posts.map(el => {
-    return <BlogCard props={el} />
+    return <BlogCard key={el._id} props={el} />
   })
 
   return (

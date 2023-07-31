@@ -7,10 +7,22 @@ import camera from "../../Images/camera.png";
 import food from "../../Images/food.png";
 import game from "../../Images/game.png";
 import axios from "axios";
-
+import tagIcon from "../../Images/tag.png";
+import locIcon from "../../Images/location.png";
 const Description = () => {
   const [imageData, setImageData] = useState(null);
   const [selectedButton, setSelectedButton] = useState("");
+
+  const [showT, setShowT] = React.useState(false)
+  const [showL, setShowL] = React.useState(false)
+
+  function showHideT() {
+    setShowT((old) => !old)
+  }
+
+  function showHideL() {
+    setShowL((old) => !old)
+  }
 
   useEffect(() => {
     const base64String = localStorage.getItem("selectedImage");
@@ -21,25 +33,6 @@ const Description = () => {
     const descriptionInput = document.getElementById("textInput");
     const vibetags = selectedButton;
 
-    console.log("imageData", imageData)
-
-    // // Decode the base64 string to binary data
-    // const binaryImageData = atob(imageData);
-
-    // // Convert the binary data to a Uint8Array
-    // const bytes = new Uint8Array(binaryImageData.length);
-    // for (let i = 0; i < binaryImageData.length; i++) {
-    //   bytes[i] = binaryImageData.charCodeAt(i);
-    // }
-
-    // // Create a Blob from the Uint8Array
-    // const blob = new Blob([bytes], { type: 'image/jpeg' });
-
-    // // Create a URL for the Blob
-    // const imageUrl = URL.createObjectURL(blob);
-
-    // // Use the imageUrl to display the image or perform further processing (e.g., save the image as a file)
-
     let post = {
       description: descriptionInput.value,
       vibetags,
@@ -49,8 +42,6 @@ const Description = () => {
   }
 
   const fetchPosts = async (post) => {
-    console.log("post", post)
-
     try {
       const response = await axios.post('http://localhost:5000/api/post/create',
         post
@@ -75,6 +66,16 @@ const Description = () => {
   }
   console.log(selectedButton)
 
+  const [people, setPeople] = useState([{
+    username: "sherlock_holmes"
+  }, {
+    username: "emilia_jones"
+  }])
+
+  const peopleToTag = people.map(el => {
+    return <Tag props={el.username} />
+  })
+
   return (
     <div className="full">
       <div className="top">
@@ -94,7 +95,23 @@ const Description = () => {
         <p className="ptag">Description</p>
         <textarea id="textInput" className="input"></textarea>
         <hr></hr>
-        <Tag />
+
+        <div className="tag" onClick={showHideT}>
+          <img src={tagIcon} alt=""></img>
+          <span>Tag People</span>
+        </div>
+        {showT && <div className="peopleTagDiv">
+          {peopleToTag}
+        </div>}
+
+        <div className="tag" onClick={showHideL}>
+          <img src={locIcon} alt=""></img>
+          <span>Location</span>
+        </div>
+        {showL && <div className="located">
+          location to display
+        </div>}
+
         <p className="vibeText">Add your vibetags</p>
         <div className="vibeTagDiv">
           <button className={selectedButton === 'Photography' ? 'selected' : 'vibeTags'}

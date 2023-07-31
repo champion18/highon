@@ -1,14 +1,22 @@
-.full{
+body {
+    height: 100vh;
+    background-color: #F7F7F7;
+    font-family: 'Poppins', 'sans-serif' !important;
+}
+
+.full {
     height: 60vh;
 }
-.top{
+
+.top {
     height: 15%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
 }
-.postButton{
+
+.postButton {
     background-color: #414141;
     color: #FFFFFF;
     width: 118px;
@@ -16,54 +24,58 @@
     border-radius: 25px;
     border: none;
 }
-.postImg{
-   height: 85px;
-   width: 80px;
-   border-radius: 10px;
-   margin-left: 15px;
+
+.postImg {
+    height: 85px;
+    width: 80px;
+    border-radius: 10px;
+    margin-left: 15px;
 }
-.input{
+
+.input {
     width: 338px;
-    height:107px;
+    height: 107px;
     border: 2px solid #0198C6;
     border-radius: 10px;
     margin-left: 15px;
 }
-.ptag{
+
+.ptag {
     color: #0198C6;
     font-weight: 500;
     margin-left: 15px;
 }
-.vibeText{
-    color:#7B7B7B ;
+
+.vibeText {
+    color: #7B7B7B;
     font-weight: 600;
     margin-left: 20px;
 }
-.vibeTagDiv{
+
+.vibeTagDiv {
     display: flex;
     justify-content: space-around;
 }
-.vibeTags{
+
+.vibeTags {
     border: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 25px;
     width: max-content;
-    padding: 8px 10px;
+    padding: 8px 25px;
+    background-color: white;
 }
-.vibeTagDiv img{
-    height:15px;
+
+.vibeTagDiv img {
+    height: 15px;
     width: 20px;
     margin-right: 3px;
     margin-bottom: 2px;
 }
-.vibeTagDiv span{
-    margin: 0;
-    font-size: small;
-}
 
-.selected{
+.selected {
     border: none;
     display: flex;
     justify-content: space-between;
@@ -71,5 +83,18 @@
     border-radius: 25px;
     width: max-content;
     padding: 8px 10px;
-    background-color:#0198C6 ;
+    background-color: #0198C6;
+}
+
+.peopleTagDiv {
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Poppins', 'sans-serif';
+}
+
+.peopleTagDiv span, .vibeTagDiv span {
+    color: #414141;
+    font-weight: 700;
+    margin-right: 0px;
+    font-size: 12px !important;
 }
