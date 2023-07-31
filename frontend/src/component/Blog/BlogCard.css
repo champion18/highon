@@ -22,7 +22,6 @@
     right: 0;
     left: 79%;
     width: 25px;
-    height: 28px;
+    height: 28px !important;
     cursor: pointer;
-    /* background-color: aqua; */
   }

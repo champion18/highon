@@ -12,7 +12,6 @@ import locIcon from "../../Images/location.png";
 
 const Description = () => {
   const [imageData, setImageData] = useState(null);
-  const [selectedButton, setSelectedButton] = useState("");
   const [showT, setShowT] = React.useState(false)
   const [showL, setShowL] = React.useState(false)
   let vibeTags = [
