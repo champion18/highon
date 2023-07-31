@@ -9,12 +9,28 @@ import game from "../../Images/game.png";
 import axios from "axios";
 import tagIcon from "../../Images/tag.png";
 import locIcon from "../../Images/location.png";
+
 const Description = () => {
   const [imageData, setImageData] = useState(null);
   const [selectedButton, setSelectedButton] = useState("");
-
   const [showT, setShowT] = React.useState(false)
   const [showL, setShowL] = React.useState(false)
+  let vibeTags = [
+    {
+      name: "Photography",
+      isSelected: false
+    },
+    {
+      name: "Food vlogs",
+      isSelected: false
+    },
+    {
+      name: "Gaming",
+      isSelected: false
+    }
+  ]
+  const [vibeTagsArray, setVibeTagsArray] = React.useState(vibeTags)
+  const [selectedVibeTagsArray, setSelectedVibeTagsArray] = useState([]);
 
   function showHideT() {
     setShowT((old) => !old)
@@ -31,22 +47,22 @@ const Description = () => {
 
   function makePost() {
     const descriptionInput = document.getElementById("textInput");
-    const vibetags = selectedButton;
+    const vibetags = selectedVibeTagsArray;
 
     let post = {
       description: descriptionInput.value,
       vibetags,
       image: imageData
     }
-    fetchPosts(post);
+    createPost(post);
   }
 
-  const fetchPosts = async (post) => {
+  const createPost = async (post) => {
     try {
       const response = await axios.post('http://localhost:5000/api/post/create',
         post
       );
-      console.log(" fetchPosts response", response)
+      console.log("createPost response", response)
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -59,12 +75,29 @@ const Description = () => {
   };
 
   function selectVibe(event) {
-    const clickedButton = event.target.innerText;
-    setSelectedButton((prevSelected) =>
-      prevSelected === clickedButton ? "" : clickedButton
+    const clickedTag = event.target.innerText;
+
+    setVibeTagsArray((prevSelected) => {
+
+      let newArr = prevSelected.map(el => {
+        if (el.name === clickedTag && !el.isSelected) {
+          el.isSelected = true;
+        } else if (el.name === clickedTag && el.isSelected) {
+          el.isSelected = false;
+        }
+        return el;
+      })
+      let selectedVibeTagsArray = []
+      newArr.map(el => {
+        if (el.isSelected) {
+          selectedVibeTagsArray.push(el.name)
+        }
+      })
+      setSelectedVibeTagsArray(selectedVibeTagsArray)
+      return newArr
+    }
     );
   }
-  console.log(selectedButton)
 
   const [people, setPeople] = useState([{
     username: "sherlock_holmes"
@@ -114,22 +147,22 @@ const Description = () => {
 
         <p className="vibeText">Add your vibetags</p>
         <div className="vibeTagDiv">
-          <button className={selectedButton === 'Photography' ? 'selected' : 'vibeTags'}
+          <div className={selectedVibeTagsArray.includes('Photography') ? 'selected' : 'vibeTags'}
             onClick={selectVibe}
           >
             <img src={camera} alt=""></img>
             <span>Photography</span>
-          </button>
-          <button className={selectedButton === 'Food vlogs' ? 'selected' : 'vibeTags'}
+          </div>
+          <div className={selectedVibeTagsArray.includes('Food vlogs') ? 'selected' : 'vibeTags'}
             onClick={selectVibe}>
             <img src={food} alt=""></img>
             <span>Food vlogs</span>
-          </button>
-          <button className={selectedButton === 'Gaming' ? 'selected' : 'vibeTags'}
+          </div>
+          <div className={selectedVibeTagsArray.includes('Gaming') ? 'selected' : 'vibeTags'}
             onClick={selectVibe}>
             <img src={game} alt=""></img>
             <span>Gaming</span>
-          </button>
+          </div>
         </div>
       </div>
     </div>
