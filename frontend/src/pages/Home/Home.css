@@ -1,0 +1,7 @@
+.App {
+    text-align: center;
+  }
+  .posts{
+    display: flex;
+    flex-wrap: wrap;
+  }

@@ -1,0 +1,28 @@
+.card {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    flex: 0 0 calc(50% - 10px);
+    margin: 5px;
+}
+.blog-img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 6px;
+  }
+  
+.heart {
+    position: absolute;
+    bottom: 0;
+    top:78%;
+    right: 0;
+    left: 79%;
+    width: 25px;
+    height: 28px;
+    cursor: pointer;
+    /* background-color: aqua; */
+  }

@@ -1,0 +1,22 @@
+.logo{
+    width:84px;
+    height:40px;
+    margin-left: 15px;
+}
+.head-element{
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.addPost{
+    width: 23px;
+    height: 22.38px;
+    margin-left: auto;
+}
+.search{
+    width: 25px;
+    height: 25px;
+    margin-left: 20px;
+    margin-right: 25px;
+}

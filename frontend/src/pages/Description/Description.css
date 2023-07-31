@@ -1,0 +1,75 @@
+.full{
+    height: 60vh;
+}
+.top{
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.postButton{
+    background-color: #414141;
+    color: #FFFFFF;
+    width: 118px;
+    height: 38px;
+    border-radius: 25px;
+    border: none;
+}
+.postImg{
+   height: 85px;
+   width: 80px;
+   border-radius: 10px;
+   margin-left: 15px;
+}
+.input{
+    width: 338px;
+    height:107px;
+    border: 2px solid #0198C6;
+    border-radius: 10px;
+    margin-left: 15px;
+}
+.ptag{
+    color: #0198C6;
+    font-weight: 500;
+    margin-left: 15px;
+}
+.vibeText{
+    color:#7B7B7B ;
+    font-weight: 600;
+    margin-left: 20px;
+}
+.vibeTagDiv{
+    display: flex;
+    justify-content: space-around;
+}
+.vibeTags{
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 25px;
+    width: max-content;
+    padding: 8px 10px;
+}
+.vibeTagDiv img{
+    height:15px;
+    width: 20px;
+    margin-right: 3px;
+    margin-bottom: 2px;
+}
+.vibeTagDiv span{
+    margin: 0;
+    font-size: small;
+}
+
+.selected{
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 25px;
+    width: max-content;
+    padding: 8px 10px;
+    background-color:#0198C6 ;
+}
